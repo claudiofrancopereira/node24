@@ -1,11 +1,19 @@
-import { Router } from "express";
+import { Router } from 'express'
 
-//import { UsersController } from "./controllers/UsersController";
+import { prisma } from './database/connection'
 
-const router = Router();
+import PatrimonyController from './controllers/PatrimoniesController'
 
-router.get("/users", (req, res) => {
-  res.json({ message2: "Hello, World!" });
-});
+const router = Router()
 
-export { router };
+
+
+
+
+
+
+
+
+router.get('/patrimonies', PatrimonyController.index)
+
+export { router }
