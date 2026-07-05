@@ -1,6 +1,19 @@
 import { Request, Response } from "express";
 import { prisma } from "../database/connection";
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 export default {
     async index(request: Request, response: Response) {
         const allPatrimonies = await prisma.patrimonies.findMany({
@@ -44,24 +57,33 @@ export default {
         return response.json(patrimony);
     
     },
+    
+    async pictures(request: Request, response: Response) {
+        const { id } = request.params;
+
+        const patrimonyId = Array.isArray(id) ? id[0] : id;
+
+        if (!patrimonyId) {
+            return response.status(400).json({ error: 'Invalid patrimony id' });
+
+        }
+
+        const image = await prisma.images.create({
+            data: {
+            name: 'image1.jpg',
+            path: 'c:\\image1.jpg',
+            patrimoniesID: patrimonyId,
+            },
+
+        });
+
+        return response.json(image);
+
+    },
 
 };
-/*include: {
-                images: {
-                    select: {
-                        id: true,
-                        patrimoniesID: true,
-                        name: true,
-                        path: true,
-                        createdAt: true,
-                        updatedAt: true,
 
-                    },
-
-                },
-
-                
-            },
+/*
 reports: {
                     include: {
                         reportImages: {

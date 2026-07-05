@@ -1,1 +1,7 @@
 GET http://localhost:3333/patrimonies
+
+###
+POST http://localhost:3333/patrimonies
+
+###
+POST http://localhost:3333/pictures/b741966a-9121-4ee3-a633-7f4811c44906
