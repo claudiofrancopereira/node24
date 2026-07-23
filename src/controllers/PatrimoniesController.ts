@@ -38,13 +38,13 @@ export default {
     async create(request: Request, response: Response) {
         const patrimony = await prisma.patrimonies.create({
             data: {
-                name: 'GCM 2',
-                address: 'Rua Sao Paulo, 777',
-                neighborhood: 'Conj. Hab. Prof. Giordano Mestrinelli',
-                zipcode: '15803-270',
-                latitude: -21.129917463226988, 
-                longitude: -48.999346775739916,
-                color: 'red',
+                name: 'Preitura Municipal de Catanduva',
+                address: 'Praça Conde Franscico Matarazzo, 1',
+                neighborhood: 'Centro',
+                zipcode: '15804-000',
+                latitude: -21.129921, 
+                longitude: -48.999096,
+                color: 'green',
         
             },
     
@@ -55,11 +55,11 @@ export default {
     },
     
     async pictures(request: Request, response: Response) {
-        const { id } = request.params;
+        const { idPatrimony } = request.params;
 
-        const patrimonyId = Array.isArray(id) ? id[0] : id;
+        const patrimony = Array.isArray(idPatrimony) ? idPatrimony[0] : idPatrimony;
 
-        if (!patrimonyId) {
+        if (!patrimony) {
             return response.status(400).json({ error: 'Invalid patrimony id' });
 
         };
@@ -67,8 +67,8 @@ export default {
         const image = await prisma.images.create({
             data: {
                 name: 'image1.jpg',
-                path: 'c:\image1.jpg',
-                patrimoniesID: patrimonyId,
+                path: `${idPatrimony}/pictures/image1.jpg`,
+                patrimoniesID: patrimony,
 
             },
 

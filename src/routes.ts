@@ -7,8 +7,8 @@ const router = Router()
 
 router.get('/patrimonies', PatrimonyController.index)
 
-router.get('/patrimonies/:id/reports', ReportsController.index);
-router.get('/patrimonies/:patrimony/reports/:report', ReportsController.one);
+router.get('/patrimonies/:idPatrimony/reports', ReportsController.index);
+router.get('/patrimonies/:idPatrimony/reports/:idReport', ReportsController.one);
 
 
 
@@ -16,9 +16,9 @@ router.get('/patrimonies/:patrimony/reports/:report', ReportsController.one);
 
 
 router.post('/patrimonies', PatrimonyController.create)
-router.post('/patrimonies/:id', PatrimonyController.pictures)
-router.post('/patrimonies/:id/reports', ReportsController.create);
-router.post('/patrimonies/:patrimony/reports/:report', ReportsController.pictures);
+router.post('/patrimonies/:idPatrimony/pictures', PatrimonyController.pictures)
+router.post('/patrimonies/:idPatrimony/reports', ReportsController.create);
+router.post('/patrimonies/:idPatrimony/reports/:idReport', ReportsController.pictures);
 
 
 export { router }

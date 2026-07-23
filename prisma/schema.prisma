@@ -61,7 +61,8 @@ model Reports {
 
 model ReportImages {
   id        String   @id @default(uuid())
-  path      String?
+  name      String?
+  path      String
   createdAt DateTime @default(now())
 
   reports  Reports @relation(fields: [reportID], references: [id])

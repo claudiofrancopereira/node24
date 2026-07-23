@@ -18,11 +18,11 @@ GET http://localhost:3333/patrimonies/b741966a-9121-4ee3-a633-7f4811c44906/repor
 POST http://localhost:3333/patrimonies
 
 ###
-POST http://localhost:3333/patrimonies/4932b3a3-b3a6-4469-9699-aee9d264208d
+POST http://localhost:3333/patrimonies/b741966a-9121-4ee3-a633-7f4811c44906/pictures
 
 ###
-POST http://localhost:3333/patrimonies/4932b3a3-b3a6-4469-9699-aee9d264208d/reports 
+POST http://localhost:3333/patrimonies/b741966a-9121-4ee3-a633-7f4811c44906/reports 
 
 ###
-POST http://localhost:3333/patrimonies/4932b3a3-b3a6-4469-9699-aee9d264208d/reports/10393db9-8b44-4693-9eab-24aa97057f28
+POST http://localhost:3333/patrimonies/b741966a-9121-4ee3-a633-7f4811c44906/reports/c3fbb234-d5a4-48ff-9776-bda4f3c4e641
 
