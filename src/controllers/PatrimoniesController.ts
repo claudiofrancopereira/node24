@@ -21,6 +21,7 @@ export default {
                 images: true,
                 reports: {
                     include: {
+                        involve: true,
                         reportImages: true,
 
                     },
@@ -44,7 +45,7 @@ export default {
 
         const patrimony = await prisma.patrimonies.findUniqueOrThrow({
             where: {
-                id: patrimonyID,
+                id: String(patrimonyID),
 
             },
 
@@ -52,6 +53,7 @@ export default {
                 images: true,
                 reports: {
                     include: {
+                        involve: true,
                         reportImages: true,
 
                     },

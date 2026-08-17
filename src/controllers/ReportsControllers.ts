@@ -34,6 +34,7 @@ export default {
             },
     
             include: {  
+                involve: true,
                 reportImages: true,
     
             },
@@ -66,11 +67,12 @@ export default {
     
                 },
 
-                id: reportID,
+                id: String(reportID),
 
             },
             
             include: {
+                involve: true,
                 reportImages: true,
             
             },
@@ -92,7 +94,7 @@ export default {
 
         const report = await prisma.reports.create({
             data: {
-                date: '2026-07-15T21:38:45.889Z',
+                date: new Date('2026-07-15T21:38:45.889Z'),
                 pages: 1,
 
                 vehicle: '2026',
@@ -111,9 +113,18 @@ export default {
                 bopc: '3434',
 
                 opened: true,
-                
+                         
+                involve: {
+                    create: {
+                        condition: 'Solteiro',
+                        name: 'Arthur Souza Pereira',
+
+                    },
+
+                },
+
                 patrimonyID: String(patrimonyID),
-            
+                   
             },
 
         });

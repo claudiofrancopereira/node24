@@ -79,24 +79,24 @@ model Reports {
 }
 
 model Involve {
-  id           String @id @default(uuid())
-  number       Int
-  condition    String
-  name         String
-  father       String
-  mother       String
-  dbirth       String
-  pbirth       String
-  color        String
-  sex          String
-  civilStatus  String
-  work         String
-  rgcpf        String
-  address      String
-  neighborhood String
-  city         String
-  state        String
-  phone        String
+  id           String  @id @default(uuid())
+  number       Int     @default(autoincrement())
+  condition    String?
+  name         String?
+  father       String?
+  mother       String?
+  dbirth       String?
+  pbirth       String?
+  color        String?
+  sex          String?
+  civilStatus  String?
+  work         String?
+  rgcpf        String?
+  address      String?
+  neighborhood String?
+  city         String?
+  state        String?
+  phone        String?
 
   createAt DateTime @default(now())
 
