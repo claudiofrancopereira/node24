@@ -22,6 +22,7 @@ export default {
                 reports: {
                     include: {
                         involve: true,
+                        car: true,
                         reportImages: true,
 
                     },
@@ -54,6 +55,7 @@ export default {
                 reports: {
                     include: {
                         involve: true,
+                        car: true,
                         reportImages: true,
 
                     },

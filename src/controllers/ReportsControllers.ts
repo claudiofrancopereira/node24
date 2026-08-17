@@ -35,6 +35,7 @@ export default {
     
             include: {  
                 involve: true,
+                car: true,
                 reportImages: true,
     
             },
@@ -73,6 +74,7 @@ export default {
             
             include: {
                 involve: true,
+                car: true,
                 reportImages: true,
             
             },
@@ -94,7 +96,7 @@ export default {
 
         const report = await prisma.reports.create({
             data: {
-                date: new Date('2026-07-15T21:38:45.889Z'),
+                date: new Date('2026-07-18T21:38:45.889Z'),
                 pages: 1,
 
                 vehicle: '2026',
@@ -108,23 +110,35 @@ export default {
                 
                 description: 'Grampeador',
                 outcome: 'Devolveu',
-                
-                bopm: '1212',
-                bopc: '3434',
-
+                                
                 opened: true,
                          
-                involve: {
+                
+                car: {
                     create: {
-                        condition: 'Solteiro',
-                        name: 'Arthur Souza Pereira',
+                        vessel: 'Pas/Automovel',
+                        makebody: 'Ford/Focus',
+                        color: 'cinza',
+                        plate: 'CXE-6700',
+                        city: 'Catanduva',
+                        state: 'SP',
 
                     },
 
                 },
 
+                bopm: '1212',
+                bopc: '3434',
+
                 patrimonyID: String(patrimonyID),
                    
+            },
+
+            include: {
+                involve: true,
+                car: true,
+                reportImages: true,
+
             },
 
         });

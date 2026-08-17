@@ -71,16 +71,17 @@ model Reports {
 
   createAt DateTime @default(now())
 
+  involve      Involve[]
+  car          Car[]
+  reportImages ReportImages[]
+
   patrimony   Patrimonies @relation(fields: [patrimonyID], references: [id])
   patrimonyID String
-
-  involve      Involve[]
-  reportImages ReportImages[]
 }
 
 model Involve {
   id           String  @id @default(uuid())
-  number       Int     @default(autoincrement())
+  number       Int?    @default(autoincrement())
   condition    String?
   name         String?
   father       String?
@@ -104,10 +105,26 @@ model Involve {
   reportID String
 }
 
+model Car {
+  id       String  @id @default(uuid())
+  number   Int?    @default(autoincrement())
+  vessel   String?
+  makebody String?
+  color    String?
+  plate    String?
+  city     String?
+  state    String?
+
+  createAt DateTime @default(now())
+
+  report   Reports @relation(fields: [reportID], references: [id])
+  reportID String
+}
+
 model ReportImages {
-  id        String   @id @default(uuid())
-  path      String
-  createdAt DateTime @default(now())
+  id        String    @id @default(uuid())
+  path      String?
+  createdAt DateTime? @default(now())
 
   reports  Reports @relation(fields: [reportID], references: [id])
   reportID String
