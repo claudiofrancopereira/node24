@@ -36,16 +36,15 @@ export default {
     },
 
     async show(request: Request, response: Response) {
-        const { idPatrimony } = request.params;
-        const patrimonyId = Array.isArray(idPatrimony) ? idPatrimony[0] : idPatrimony;
-
-        if (!patrimonyId) {
+        const { patrimonyID } = request.params;
+       
+        if (!patrimonyID) {
             return response.status(400).json({ error: 'Invalid patrimony id' });
         }
 
         const patrimony = await prisma.patrimonies.findUniqueOrThrow({
             where: {
-                id: patrimonyId,
+                id: patrimonyID,
 
             },
 
@@ -90,13 +89,13 @@ export default {
 
         const patrimony = await prisma.patrimonies.create({
             data: {
-                name: 'Preitura Municipal de Catanduva',
-                address: 'Praça Conde Franscico Matarazzo, 1',
-                neighborhood: 'Centro',
-                zipcode: '15804-000',
-                latitude: -21.129921, 
-                longitude: -48.999096,
-                color: 'green',
+                name: 'USF Dr. Carlos Roberto Surian',
+                address: 'R. das Pintangas, 330',
+                neighborhood: 'Nova Catanduva I',
+                zipcode: '15813-070',
+                latitude: -21.1257475,
+                longitude: -49.0217003,
+                color: 'red',
         
             },
     
@@ -108,11 +107,26 @@ export default {
     
     },
     
-    async pictures(request: Request, response: Response) {
+    async images(request: Request, response: Response) {
         const { idPatrimony } = request.params;
-        const patrimony = Array.isArray(idPatrimony) ? idPatrimony[0] : idPatrimony;
+        const patrimonyID = Array.isArray(idPatrimony) ? idPatrimony[0] : idPatrimony;
 
-        if (!patrimony) {
+        async function makeFolder(idPatrimony: string): Promise<void> {
+            const makeImages = path.join(__dirname, '..', '..', 'src', 'assets', idPatrimony, 'images');
+                       
+            try {
+                await mkdir(makeImages, { recursive: true }),
+          
+                console.log(`Pasta "${idPatrimony}/images" criada com sucesso!`);
+
+            } catch (erro) {
+                console.error('Erro ao criar a pasta:', erro);
+
+            };
+
+        };
+
+        if (!patrimonyID) {
             return response.status(400).json({ error: 'Invalid patrimony id' });
 
         };
@@ -120,13 +134,15 @@ export default {
         const image = await prisma.images.create({
             data: {
                 name: 'image1.jpg',
-                path: `images1.jpg`,
-                patrimoniesID: patrimony,
+                path: `http://192.168.15.16:3333/src/assets/${patrimonyID}/images/image1.jpg`,
+                patrimoniesID: patrimonyID,
 
             },
 
         });
 
+        makeFolder(patrimonyID);
+        
         return response.json(image);
 
     },

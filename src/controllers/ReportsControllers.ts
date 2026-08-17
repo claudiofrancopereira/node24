@@ -16,23 +16,26 @@ import { prisma } from "../database/connection";
 
 export default {
     async index(request: Request, response: Response) {
-        const { idPatrimony } = request.params;
+        console.log(request.params);
+        const { patrimonyID } = request.params;
 
-        const patrimony = Array.isArray(idPatrimony) ? idPatrimony[0] : idPatrimony;
-
-        if (!patrimony) {
+        if (!patrimonyID) {
             return response.status(400).json({ error: 'Invalid patrimony id' });
 
         };
         
         const allReports = await prisma.reports.findMany({
             where: {
-                patrimonyID: patrimony,
+                patrimonyID: {
+                  in: Array.isArray(patrimonyID) ? patrimonyID : [patrimonyID], 
+    
+                },
+    
             },
-            
-            include: {
+    
+            include: {  
                 reportImages: true,
-            
+    
             },
 
         });
@@ -41,22 +44,75 @@ export default {
 
     },
 
+    async show(request: Request, response: Response) {
+        console.log(request.params);  
+        
+        const { patrimonyID, reportID } = request.params;
+        
+        if (!patrimonyID) {
+            return response.status(400).json({ error: 'Invalid patrimony id' });
+
+        };
+
+        if (!reportID) {
+            return response.status(400).json({ error: 'Invalid report id' });
+
+        };
+
+        const oneReport = await prisma.reports.findUniqueOrThrow({
+            where: {
+                patrimonyID: {
+                  in: Array.isArray(patrimonyID) ? patrimonyID : [patrimonyID], 
+    
+                },
+
+                id: reportID,
+
+            },
+            
+            include: {
+                reportImages: true,
+            
+            },
+
+        });
+
+        return response.json(oneReport);
+
+    },
+
     async create(request: Request, response: Response) {
-        const { idPatrimony } = request.params;
-
-        const patrimony = Array.isArray(idPatrimony) ? idPatrimony[0] : idPatrimony;
-
-        if (!patrimony) {
+        const { patrimonyID } = request.params;
+        console.log(patrimonyID)
+       
+        if (!patrimonyID) {
             return response.status(400).json({ error: 'Invalid patrimony id' });
 
         };
 
         const report = await prisma.reports.create({
             data: {
-                description: 'Grampeador 3',
-                outcome: 'Devolveu 3',
-                patrimonyID: patrimony,
+                date: '2026-07-15T21:38:45.889Z',
+                pages: 1,
+
+                vehicle: '2026',
+                reportOfficer: 'Claudio',
+
+                hLocation: '12:00',
+                hFinal: '13:00',
+
+                address: 'Rua das Pintangas, 330',
+                nature: 'E6',
+                
+                description: 'Grampeador',
+                outcome: 'Devolveu',
+                
+                bopm: '1212',
+                bopc: '3434',
+
                 opened: true,
+                
+                patrimonyID: String(patrimonyID),
             
             },
 
@@ -89,40 +145,5 @@ export default {
         
     },
 
-    async one(request: Request, response: Response) {  
-        const { idPatrimony, idReport } = request.params;
-        
-        console.log(idPatrimony, idReport);
-
-        const patrimony = Array.isArray(idPatrimony) ? idPatrimony[0] : idPatrimony;
-        const report = Array.isArray(idReport) ? idReport[0] : idReport;
-
-        if (!patrimony) {
-            return response.status(400).json({ error: 'Invalid patrimony id' });
-
-        };
-
-        if (!report) {
-            return response.status(400).json({ error: 'Invalid report id' });
-
-        };
-
-        const onePatrimony = await prisma.reports.findFirstOrThrow({
-            where: {
-                patrimonyID: patrimony,
-                id: report,
-                
-            },
-
-            include: {
-                reportImages: true,
-            
-            },
-
-        });
-
-        return response.json(onePatrimony);
-
-    },
-
+    
 };

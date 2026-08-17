@@ -47,21 +47,65 @@ model Images {
 }
 
 model Reports {
-  id          String   @id @default(uuid())
+  id     String   @id @default(uuid())
+  date   DateTime @unique
+  number Int      @unique @default(autoincrement())
+  pages  Int
+
+  vehicle       String
+  reportOfficer String
+
+  hLocation String
+  hFinal    String
+
+  address String
+  nature  String
+
   description String
   outcome     String
-  opened      Boolean
-  createAt    DateTime @default(now())
+
+  bopm String
+  bopc String
+
+  opened Boolean
+
+  createAt DateTime @default(now())
 
   patrimony   Patrimonies @relation(fields: [patrimonyID], references: [id])
   patrimonyID String
 
+  involve      Involve[]
   reportImages ReportImages[]
+}
+
+model Involve {
+  id           String @id @default(uuid())
+  number       Int
+  condition    String
+  name         String
+  father       String
+  mother       String
+  dbirth       String
+  pbirth       String
+  color        String
+  sex          String
+  civilStatus  String
+  work         String
+  rgcpf        String
+  address      String
+  neighborhood String
+  city         String
+  state        String
+  phone        String
+
+  createAt DateTime @default(now())
+
+  report   Reports @relation(fields: [reportID], references: [id])
+  reportID String
 }
 
 model ReportImages {
   id        String   @id @default(uuid())
-  name      String?
   path      String
   createdAt DateTime @default(now())
 
