@@ -21,8 +21,8 @@ export default {
                 images: true,
                 reports: {
                     include: {
-                        involve: true,
-                        car: true,
+                        involves: true,
+                        cars: true,
                         reportImages: true,
 
                     },
@@ -54,8 +54,8 @@ export default {
                 images: true,
                 reports: {
                     include: {
-                        involve: true,
-                        car: true,
+                        involves: true,
+                        cars: true,
                         reportImages: true,
 
                     },
@@ -93,9 +93,9 @@ export default {
 
         const patrimony = await prisma.patrimonies.create({
             data: {
-                name: 'USF Dr. Carlos Roberto Surian',
-                address: 'R. das Pintangas, 330',
-                neighborhood: 'Nova Catanduva I',
+                name: 'USF DR. CARLOS ROBERTO SURIAN',
+                address: 'RUA DAS PITANGAS, 330',
+                neighborhood: 'NOVA CATANDUVA I',
                 zipcode: '15813-070',
                 latitude: -21.1257475,
                 longitude: -49.0217003,

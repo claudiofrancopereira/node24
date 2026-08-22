@@ -34,8 +34,8 @@ export default {
             },
     
             include: {  
-                involve: true,
-                car: true,
+                involves: true,
+                cars: true,
                 reportImages: true,
     
             },
@@ -73,8 +73,8 @@ export default {
             },
             
             include: {
-                involve: true,
-                car: true,
+                involves: true,
+                cars: true,
                 reportImages: true,
             
             },
@@ -96,37 +96,59 @@ export default {
 
         const report = await prisma.reports.create({
             data: {
-                date: new Date('2026-07-18T21:38:45.889Z'),
-                pages: 1,
+                date: new Date('2026-07-20T21:41:45.889Z'),
 
                 vehicle: '2026',
-                reportOfficer: 'Claudio',
+                reportOfficer: 'CLAUDIO',
 
                 hLocation: '12:00',
                 hFinal: '13:00',
 
-                address: 'Rua das Pintangas, 330',
+                address: 'RUA DAS PITANGAS, 330',
                 nature: 'E6',
-                
-                description: 'Grampeador',
-                outcome: 'Devolveu',
-                                
-                opened: true,
-                         
-                
-                car: {
+                   
+                involves: {
                     create: {
-                        vessel: 'Pas/Automovel',
-                        makebody: 'Ford/Focus',
-                        color: 'cinza',
+                        name: 'ARTHUR SOUZA PEREIRA',
+                        condition: 'AUTOR',
+                        mother: 'SIMONE FERREIRA SOUZA PEREIRA',
+                        father: 'CLAUDIO MANOEL DA COSTA FRANCO PEREIRA',
+                        dbirth: '18/09/2017',
+                        pbirth: 'CATANDUVA/SP',
+                        color: 'BRANCA',
+                        sex: 'MASCULINO',
+                        civilStatus: 'SOLTEIRO',
+                        work: 'ESTUDANTE',
+                        rgcpf: '220756808-33',
+                        address: 'RUA GOIAS, 1059',
+                        neighborhood: 'VILA MOTTA',
+                        city: 'CATANDUVA',
+                        state: 'SP',
+                        phone: '17-99273-5321',
+
+                    },
+
+                },
+
+                cars: {
+                    create: {
+                        vessel: 'PAS/AUTOMOVEL',
+                        makebody: 'FORD/FOCUS',
+                        color: 'CINZA',
+                        year: '2000',
                         plate: 'CXE-6700',
-                        city: 'Catanduva',
+                        city: 'CATANDUVA',
                         state: 'SP',
 
                     },
 
                 },
 
+                
+                description: 'GRAMPEADOR',
+                outcome: 'DEVOLVEU',
+                opened: true,
+                
                 bopm: '1212',
                 bopc: '3434',
 
@@ -135,8 +157,8 @@ export default {
             },
 
             include: {
-                involve: true,
-                car: true,
+                involves: true,
+                cars: true,
                 reportImages: true,
 
             },
@@ -170,5 +192,46 @@ export default {
         
     },
 
-    
 };
+
+/*
+
+involves: {
+                    create: {
+                        name: 'ARTHUR SOUZA PEREIRA',
+                        condition: 'AUTOR',
+                        mother: 'SIMONE FERREIRA SOUZA PEREIRA',
+                        father: 'CLAUDIO MANOEL DA COSTA FRANCO PEREIRA',
+                        dbirth: '18/09/2017',
+                        pbirth: 'CATANDUVA/SP',
+                        color: 'BRANCA',
+                        sex: 'MASCULINO',
+                        civilStatus: 'SOLTEIRO',
+                        work: 'ESTUDANTE',
+                        rgcpf: '220756808-33',
+                        address: 'RUA GOIAS, 1059',
+                        neighborhood: 'VILA MOTTA',
+                        city: 'CATANDUVA',
+                        state: 'SP',
+                        phone: '17-99273-5321',
+
+                    },
+
+                },
+
+
+cars: {
+                    create: {
+                        vessel: 'PAS/AUTOMOVEL',
+                        makebody: 'FORD/FOCUS',
+                        color: 'CINZA',
+                        year: '2000',
+                        plate: 'CXE-6700',
+                        city: 'CATANDUVA',
+                        state: 'SP',
+
+                    },
+
+                },
+
+*/                

@@ -50,7 +50,6 @@ model Reports {
   id     String   @id @default(uuid())
   date   DateTime @unique
   number Int      @unique @default(autoincrement())
-  pages  Int
 
   vehicle       String
   reportOfficer String
@@ -71,18 +70,29 @@ model Reports {
 
   createAt DateTime @default(now())
 
-  involve      Involve[]
-  car          Car[]
+  involves      Involves[]
+  cars          Cars[]
   reportImages ReportImages[]
 
   patrimony   Patrimonies @relation(fields: [patrimonyID], references: [id])
   patrimonyID String
 }
 
-model Involve {
+enum involvesCondition {
+  VITIMA
+  TESTEMUNHA
+  AUTOR
+  AUTORA
+  PARTE_NAO_DEFINIDA
+  PND
+  SINDICADO
+
+}
+
+model Involves {
   id           String  @id @default(uuid())
-  number       Int?    @default(autoincrement())
-  condition    String?
+  number       Int?    @default(1)
+  condition    involvesCondition
   name         String?
   father       String?
   mother       String?
@@ -105,12 +115,13 @@ model Involve {
   reportID String
 }
 
-model Car {
+model Cars {
   id       String  @id @default(uuid())
-  number   Int?    @default(autoincrement())
+  number   Int?    @default(1)
   vessel   String?
   makebody String?
   color    String?
+  year     String?
   plate    String?
   city     String?
   state    String?

@@ -27,7 +27,7 @@ POST http://localhost:3333/patrimonies
 POST http://localhost:3333/patrimonies/b741966a-9121-4ee3-a633-7f4811c44906/images
 
 ###
-POST http://localhost:3333/patrimonies/b3babcce-318d-4dc4-b796-6415c8a21343/reports 
+POST http://localhost:3333/patrimonies/1e4bf3ac-0600-4e23-aae3-01f4d2a56dbc/reports 
 
 ###
 POST http://localhost:3333/patrimonies/b741966a-9121-4ee3-a633-7f4811c44906/reports/c3fbb234-d5a4-48ff-9776-bda4f3c4e641
